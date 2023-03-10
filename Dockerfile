@@ -8,8 +8,8 @@ COPY ./bin/start-urbit.sh /bin/start-urbit
 COPY ./bin/get-urbit-code.sh /bin/get-urbit-code
 COPY ./bin/reset-urbit-code.sh /bin/reset-urbit-code
 
-RUN apk add --no-cache curl bash libcap libc6-compat
-RUN cd /bin && curl -L https://urbit.org/install/linux64/latest | tar xzk --strip=1
+RUN apk add --no-cache curl bash libcap libc6-compat tar
+RUN cd /bin && curl -L https://urbit.org/install/linux-x86_64/latest | tar xzk --transform='s/.*/urbit/g'
 RUN setcap 'cap_net_bind_service=+ep' /bin/urbit
 
 RUN mkdir -p /urbit
